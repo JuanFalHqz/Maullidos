@@ -30,7 +30,8 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'apps.authentication',
+    'apps.core'
 ]
 
 THIRD_APPS = [
@@ -104,7 +105,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Image's configuration
+STATIC_DIR = BASE_DIR / STATIC_URL
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login
+# LOGIN_REDIRECT_URL = '/app/dashboard'
+LOGIN_URL = '/maullidos/authentication/login'

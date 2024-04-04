@@ -1,0 +1,79 @@
+{% extends 'base/main_page.html' %}
+
+{% block content %}
+    <div class="container-fluid col-xxl-8 col-xl-10">
+        <h3 class="text-dark mb-4">Todos los Maullidos</h3>
+        <div class="card shadow">
+            <div class="card-header d-flex py-3">
+                <div class="col-6">
+                    <p class="text-primary m-0 fw-bold">Todos los Maullidos</p>
+                </div>
+                {% block buttons_header %}
+
+                {% endblock %}
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive table mt-2" id="dataTable" role="grid"
+                     aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Maullidos</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for message in messages %}
+                            <tr>
+                                <td>
+                                    <div style="margin-bottom: 10px;">
+                                        <p style="margin-bottom: 5px;"><span
+                                                style="color: rgba(0, 0, 0, 0.78);">{{ message.message }}</span><br>
+                                        </p>
+                                        <div><span><a href="{% url 'all_messages_by_user' message.author.pk %}"
+                                                      rel="author">{{ message.author }}</a></span><span
+                                                style="color: #b4b4b4;">{{ message.created_date }}</span></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr></tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- Paginación -->
+                <div class="row">
+                    <div class="col-12 align-self-center">
+                        <nav class="d-lg-flex justify-content-center">
+                            {% if is_paginated %}
+                                <ul class="pagination d-xs-block d-flex justify-content-center">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" aria-label="Previous" href="?page=1"><span>&laquo; Primera</span></a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="page-item"><span
+                                            class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+                                    </li>
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"><span>Última &raquo;</span>
+                                            </a></li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
