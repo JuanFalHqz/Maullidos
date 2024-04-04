@@ -1,17 +1,20 @@
 {% extends 'base/main_page.html' %}
 {% block content %}
     <div class="container-fluid col-xxl-8 col-xl-10">
-        <h3 class="text-dark mb-4">Ver todos</h3>
+        <h3 class="text-dark mb-4">Añadir maullido</h3>
         <div class="card shadow col">
             <div class="card-header py-3">
                 <p class="text-primary m-0 fw-bold">Añadir maullido</p>
             </div>
             <div class="card-body">
-                <form>
-                    <div class="mb-3"><label class="form-label"
-                                             for="address"><strong>Contenido</strong><br></label><input
-                            class="form-control" type="text" id="address" placeholder="Escribe tú maullido"
-                            name="address">
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="address">
+                            <strong>{{ form.message.label }}</strong>
+                            <br>
+                        </label>
+                        {{ form.message }}
                     </div>
                     <div class="mb-3">
                         <button class="btn btn-primary btn-sm" type="submit">Guardar</button>

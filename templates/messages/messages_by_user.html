@@ -11,7 +11,7 @@
                 {% block buttons_header %}
                     {% if user.pk == messages.first.author.pk %}
                         <div class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end col-6">
-                            <button class="btn btn-primary btn-sm" type="button">Añadir Maullido</button>
+                            <a href="{% url 'create_message' %}" role="button" class="btn btn-primary btn-sm" type="button">Añadir Maullido</a>
                         </div>
                     {% endif %}
                 {% endblock %}
