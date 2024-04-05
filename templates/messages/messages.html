@@ -1,7 +1,7 @@
 {% extends 'base/main_page.html' %}
 
 {% block content %}
-    
+
     <div class="container-fluid col-xxl-8 col-xl-10">
         <h3 class="text-dark mb-4">Todos los Maullidos</h3>
         <div class="card shadow">
@@ -23,32 +23,48 @@
             <div class="card-body">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid"
                      aria-describedby="dataTable_info">
-                    <table class="table my-0" id="dataTable">
-                        <thead>
-                        <tr>
-                            <th>Maullidos</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for message in messages %}
+                    {% if messages.count != 0 %}
+                        <table class="table my-0" id="dataTable">
+                            <thead>
                             <tr>
-                                <td>
-                                    <div style="margin-bottom: 10px;">
-                                        <p style="margin-bottom: 5px;"><span
-                                                style="color: rgba(0, 0, 0, 0.78);">{{ message.message }}</span><br>
-                                        </p>
-                                        <div><span><a href="{% url 'all_messages_by_user' message.author.pk %}"
-                                                      rel="author">{{ message.author }}</a></span><span
-                                                style="color: #b4b4b4;">{{ message.created_date }}</span></div>
-                                    </div>
-                                </td>
+                                <th>Maullidos</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                        <tfoot>
-                        <tr></tr>
-                        </tfoot>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for message in messages %}
+                                <tr>
+                                    <td>
+                                        <div style="margin-bottom: 10px;">
+                                            <p style="margin-bottom: 5px;"><span
+                                                    style="color: rgba(0, 0, 0, 0.78);">{{ message.message }}</span><br>
+                                            </p>
+                                            <div><span><a href="{% url 'all_messages_by_user' message.author.pk %}"
+                                                          rel="author">{{ message.author }}</a></span><span
+                                                    style="color: #b4b4b4;">{{ message.created_date }}</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr></tr>
+                            </tfoot>
+                        </table>
+                    {% else %}
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h2>
+                                ¿Qué esperas? ¡Sé el primero en crear tú maullido!
+                            </h2>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p>
+                                Inicia sesión, en caso de no tener cuenta ¡Regístrate!
+                            </p>
+                        </div>
+
+                    {% endif %}
+
+
                 </div>
                 <!-- Paginación -->
                 <div class="row">
