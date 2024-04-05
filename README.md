@@ -20,9 +20,12 @@ Aplicación para postear mensajes "Maullidos".
    ```bash
    docker run -d -p 8000:8000 maullidos 
 
-La aplicación estará disponible en http://localhost:8000.
-6. **Haz las migraciones**
+5. **Haz las migraciones**
    ```bash
    docker ps
    docker exec <ID_DEL_CONTENEDOR> python manage.py makemigrations
    docker exec <ID_DEL_CONTENEDOR> python manage.py migrate
+
+La aplicación estará disponible en http://localhost:8000.
+
+**Saludos**
