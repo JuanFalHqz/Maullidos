@@ -31,11 +31,11 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.authentication',
-    'apps.core'
+    'apps.core',
 ]
 
 THIRD_APPS = [
-
+    'widget_tweaks',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -92,7 +92,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -118,5 +118,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Login
-# LOGIN_REDIRECT_URL = '/app/dashboard'
+LOGIN_REDIRECT_URL = '/maullidos/'
 LOGIN_URL = '/maullidos/authentication/login'
+
+
+LOGOUT_REDIRECT_URL = '/maullidos/'
