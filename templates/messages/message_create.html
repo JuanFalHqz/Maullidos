@@ -1,5 +1,14 @@
 {% extends 'base/main_page.html' %}
+{% load static %}
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="container-fluid col-xxl-8 col-xl-10">
         <h3 class="text-dark mb-4">Añadir maullido</h3>
         <div class="card shadow col">
@@ -7,7 +16,7 @@
                 <p class="text-primary m-0 fw-bold">Añadir maullido</p>
             </div>
             <div class="card-body">
-                <form method="post" action=".">
+                <form method="post" action="." id="message_form">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="address">
@@ -31,4 +40,7 @@
         </div>
     </div>
 {% endblock %}
-            
+
+{% block script %}
+    <script src="{% static 'assets/js/messages_form_validation.js' %}"></script>
+{% endblock %}

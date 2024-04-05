@@ -1,6 +1,7 @@
 {% extends 'base/main_page.html' %}
 
 {% block content %}
+    
     <div class="container-fluid col-xxl-8 col-xl-10">
         <h3 class="text-dark mb-4">Todos los Maullidos</h3>
         <div class="card shadow">
@@ -9,11 +10,17 @@
                     <p class="text-primary m-0 fw-bold">Todos los Maullidos</p>
                 </div>
                 {% block buttons_header %}
-
+                    {% if user.is_authenticated %}
+                        <div class="d-lg-flex d-xl-flex justify-content-lg-end justify-content-xl-end col-6">
+                            <a href="{% url 'all_messages_by_user' user.pk %}" role="button"
+                               class="btn btn-primary btn-sm"
+                               type="button">Ver mis
+                                Maullidos</a>
+                        </div>
+                    {% endif %}
                 {% endblock %}
             </div>
             <div class="card-body">
-
                 <div class="table-responsive table mt-2" id="dataTable" role="grid"
                      aria-describedby="dataTable_info">
                     <table class="table my-0" id="dataTable">

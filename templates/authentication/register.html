@@ -1,46 +1,84 @@
+{% load static %}
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - Maullidos</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <title>Registro - Maullidos</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
 </head>
 
 <body class="bg-gradient-primary">
-    <div class="container">
-        <div class="card shadow-lg o-hidden border-0 my-5">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-flex">
-                        <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;assets/img/dogs/image2.jpeg&quot;);"></div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4">¡Registrando su cuenta!</h4>
-                            </div>
-                            <form class="user">
-                                <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Escriba su susuario" name="username"></div>
-                                <div class="row mb-3">
-                                    <div class="col mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Escriba su contraseña" name="password"></div>
-                                </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Registrar</button>
-                                <hr>
-                            </form>
-                            <div class="text-center"></div>
-                            <div class="text-center"><a class="small" href="login.html">¿Posees una cuenta? ¡Accede!</a></div>
+<div class="container">
+    <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-flex">
+                    <div class="flex-grow-1 bg-register-image"
+                         style="background-image: url({% static 'assets/img/dogs/image2.jpeg' %});"></div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">¡Registrando su cuenta!</h4>
                         </div>
+                        <form class="user" method="post" action=".">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ form.username|attr:"placeholder:Escriba un nombre de usuario"|attr:"class:form-control form-control-user" }}
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col mb-3 mb-sm-0">
+                                    {{ form.password1|attr:"placeholder:Escriba una contraseña"|attr:"class:form-control form-control-user" }}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col mb-3 mb-sm-0">
+                                    {{ form.password2|attr:"placeholder:Confirme la contraseña"|attr:"class:form-control form-control-user" }}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary d-block btn-user w-100" type="submit">Registrar</button>
+                            <hr>
+                            <!-- Mostrar errores de validación -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {% for field, error_list in form.errors.items %}
+                                        {% for error in error_list %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <!-- Notificar si el usuario ya existe -->
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+                        </form>
+                        <div class="text-center"></div>
+                        <div class="text-center"><a class="small" href="{% url 'login' %}">¿Posees una cuenta?
+                            ¡Accede!</a>
+                        </div>
+                        <hr>
+                        <div class="text-center"><a class="small" href="{% url 'all_messages' %}">Ver Maullidos</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
+</div>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/script.min.js' %}"></script>
 </body>
 
 </html>

@@ -5,6 +5,10 @@ from .models import Message
 
 
 class MessageForm(forms.ModelForm):
+    """
+    Formulario para crear un mensaje
+    """
+
     class Meta:
         model = Message
         fields = ['message']
@@ -16,8 +20,14 @@ class MessageForm(forms.ModelForm):
             })
         }
 
-    """def clean_message(self):
+    def clean_message(self):
+        """
+        Método para validar que la longitud del mensaje tenga menos de 140 caracteres.
+
+        :return: El mensaje validado si tiene menos de 140 caracteres.
+        :raises: forms.ValidationError: Si el mensaje excede los 140 caracteres.
+        """
         message = self.cleaned_data['message']
         if len(message) > 140:
             raise forms.ValidationError("El mensaje debe tener menos de 140 caracteres.")
-        return message"""
+        return message

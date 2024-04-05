@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class MessageListViewTests(TestCase):
     """
-    Tests para comprobar las funcionalidades de listar todos los mensajes y de listar todos los mensajes dado un usuario.
+    Caso de prueba para comprobar las funcionalidades de listar todos los mensajes y de listar todos los mensajes dado un usuario.
     """
 
     def setUp(self):
@@ -50,6 +50,10 @@ class MessageListViewTests(TestCase):
 
 
 class MessageCreateViewTests(TestCase):
+    """
+    Caso de prueba para comprobar la funcionalidad de crear un mensaje.
+    """
+
     def setUp(self):
         """
         Crear un usuario para las pruebas
