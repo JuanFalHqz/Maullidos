@@ -63,7 +63,3 @@ class CreateViewMessage(LoginRequiredMixin, CreateView):
         :return: La URL de éxito después de procesar el formulario.
         """
         return reverse_lazy('all_messages_by_user', kwargs={'user_id': self.request.user.pk})
-
-
-def my_custom_404_view(request, exception):
-    return render(request, 'base/404.html', status=404)

@@ -17,12 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from apps.core.views import my_custom_404_view
+from django.views.generic import RedirectView
+
+from apps.core.views.handlers import my_custom_404_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('maullidos/authentication/', include('apps.authentication.urls')),
     path('maullidos/', include('apps.core.urls')),
+    path('', RedirectView.as_view(url='/maullidos/', permanent=False)),
 ]
 
 # Configuración para manejar el error 404

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.core.views import ListViewAllMessages, ListViewMessagesByUser, CreateViewMessage
+from apps.core.views.messages_views import ListViewAllMessages, ListViewMessagesByUser, CreateViewMessage
 
 urlpatterns = [
     path('', ListViewAllMessages.as_view(), name='all_messages'),
