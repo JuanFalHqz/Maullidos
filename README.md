@@ -10,7 +10,7 @@ Aplicación para postear mensajes "Maullidos".
 
 2. **Clona el repositorio**:
    ```bash
-   git clone <https://github.com/JuanFalHqz/Maullidos.git>
+   git clone https://github.com/JuanFalHqz/Maullidos.git
 3. **Construye la imagen**
    
    En este caso la imagen se puede llamar maullidos.
